@@ -1,13 +1,16 @@
 import React from 'react'
-import CustomScreen from './screens/CustomScreen'
 import utilities from './tailwind.json'
 import { TailwindProvider } from 'tailwind-rn'
+import { NavigationContainer } from '@react-navigation/native'
+import RootNavigator from './navigator/RootNavigator'
 
 export default function App() {
   return (
     // @ts-ignore tailwind-rn doesn't have types yet
     <TailwindProvider utilities={utilities}>
-      <CustomScreen />
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
     </TailwindProvider>
   )
 }
