@@ -1,34 +1,30 @@
-import React, { useEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import CustomersScreen from '../screens/CustomersScreen'
-import OrdersScreen from '../screens/OrdersScreen'
 import { useNavigation } from '@react-navigation/native'
 import { Icon } from '@rneui/themed'
-
-export type TabStackParamList = {
-  Customers: undefined
-  Orders: undefined
-}
+import React, { useEffect } from 'react'
+import CustomersScreen from '../screens/CustomersScreen'
+import OrdersScreen from '../screens/OrdersScreen'
+import { TabStackParamList } from '../types'
 
 const iconName = (routeName: string) => {
   switch (routeName) {
     case 'Customers':
-      return 'users'
+      return 'users' as const
     case 'Orders':
-      return 'box'
+      return 'box' as const
     default:
-      return 'users'
+      return 'users' as const
   }
 }
 
 const iconType = (routeName: string) => {
   switch (routeName) {
     case 'Customers':
-      return 'feather'
+      return 'feather' as const
     case 'Orders':
-      return 'entypo'
+      return 'entypo' as const
     default:
-      return 'entypo'
+      return 'entypo' as const
   }
 }
 
@@ -48,7 +44,7 @@ export default function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: '#59c1cc',
         tabBarInactiveTintColor: 'gray',
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ color, size }) => {
           return (
             <Icon
               type={iconType(route.name)}

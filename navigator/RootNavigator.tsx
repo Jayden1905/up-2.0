@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import React from 'react'
+import { RootStackParamList } from '../types'
 import TabNavigator from './TabNavigator'
-
-type RootStackParamList = {
-  Main: undefined
-  MyModal: { userId: string; name: string }
-  Order: { order: unknown }
-}
 
 const RootStack = createNativeStackNavigator<RootStackParamList>()
 

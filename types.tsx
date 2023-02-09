@@ -1,35 +1,24 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
-
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
+import { CompositeNavigationProp } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
-  NotFound: undefined;
-};
+  Main: undefined
+  MyModal: { userId: string; name: string }
+  Order: { order: unknown }
+}
 
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  Screen
->;
+export type TabStackParamList = {
+  Customers: undefined
+  Orders: undefined
+}
 
-export type RootTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
-};
+export type CustomersScreenNavigationProps = CompositeNavigationProp<
+  BottomTabNavigationProp<TabStackParamList, 'Customers'>,
+  NativeStackNavigationProp<RootStackParamList>
+>
 
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
+export type OrdersScreenNavigationProps = CompositeNavigationProp<
+  BottomTabNavigationProp<TabStackParamList, 'Orders'>,
+  NativeStackNavigationProp<RootStackParamList>
+>
